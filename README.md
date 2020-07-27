@@ -1,2 +1,1 @@
-# vesicash-php-sdk
-Vesicash's PHP SDK
+# Vesicash PHP SDK
