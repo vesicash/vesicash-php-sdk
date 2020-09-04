@@ -1,10 +1,10 @@
 <?php
-namespace Vesicash\Vesicash;
+namespace Vesicash;
 use Exception;
 use GuzzleHttp\Client;
-use Vesicash;
+use VesicashServices;
 
-class Request extends Vesicash {
+class Request extends VesicashServices {
     /**
      * Build Request To Endpoint
      * @param $endpoint
@@ -13,21 +13,22 @@ class Request extends Vesicash {
      * @throws Exception
      */
     public function request($endpoint, $data) {
-        try {
-            $headers = array('Accept' => 'application/json', 'v-private-key' => $this->private_key);
 
-            $client = new Client([
-                'headers' => $headers,
-                'http_errors' => false
-            ]); //GuzzleHttp\Client
+        $headers = array('Accept' => 'application/json', 'v-private-key' => $this->private_key);
 
-            $result = $client->post($this->getEnvUrl() . $endpoint, [
-                'json' => $data
-            ]);
+        $client = new Client([
+            'headers' => $headers,
+            'http_errors' => false
+        ]); //GuzzleHttp\Client
 
-            return $result->getBody()->getContents();
-        } catch (Exception $e) {
-            throw new \Exception($e->getMessage());
-        }
+        $result = $client->post($this->getEnvUrl() . $endpoint, [
+            'json' => $data
+        ]);
+
+        $response = $result->getBody()->getContents();
+        $responseCode = $result->getStatusCode();
+
+        return $response;
+
     }
 }

@@ -1,23 +1,16 @@
 <?php
 namespace Vesicash\Services;
 
-use Vesicash\Vesicash\Request;
+use Vesicash\Request;
 
 class Auth extends Request {
     /**
      * Login endpoint
      * @param $data
      * @return mixed
-     * @throws \Exception
      */
     public function loginViaUsername($data) {
-        $request = $this->request('auth/login', ['username' => $data['username'], 'password' => $data['password']]);
-
-        if($request->status == 'ok' && $request->code == 200) {
-            return $request->data;
-        } else {
-            return $request->message;
-        }
+        return $this->request('auth/login', ['username' => $data['username'], 'password' => $data['password']]);
     }
 
     public function loginViaPhoneNumber($data) {
