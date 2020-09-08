@@ -11,10 +11,16 @@
 `composer require vesicash/vesicash-php-sdk`
 
 ### 2. Usage
-See <a href="example.php">Example</a>
+See <a href="examples">Examples</a>
 
 ### 3. Available Services
 1. Authentication
+2. Admin
+3. Transactions
+4. Payment
+5. Notifications
+6. Upload
+7. Subscription
 
 ### 4. Contribution
 Make a pull request with detailed explanation of what got changed/improved/suggested.

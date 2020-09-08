@@ -31,4 +31,22 @@ class Request extends VesicashServices {
         return $response;
 
     }
+
+    /**
+     * Check data array for required fields
+     * @param $checks
+     * @param $data
+     * @throws Exception
+     */
+    protected function required($checks, $data) {
+        if(is_array($checks)) {
+            if(count($checks) > 0) {
+                foreach($checks as $check) {
+                    if(!in_array($check, $data)) {
+                        throw new Exception("$check is required.");
+                    }
+                }
+            }
+        }
+    }
 }
