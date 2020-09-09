@@ -2,12 +2,10 @@
 include '../../vendor/autoload.php';
 
 // Set Access Key
-$privateKey = getenv('VESICASH_PRIVATE_KEY');
+$privateKey = "v_sandbox_xxxxxxx"; // set env
 
 // Initialize Service Loader
-$vesicash = new VesicashServices();
-$vesicash->setKey($privateKey)
-         ->setMode('sandbox');
+$vesicash = new VesicashServices($privateKey, 'sandbox');
 
 // Call service of choice
 try {

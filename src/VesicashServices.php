@@ -10,12 +10,14 @@ use Vesicash\Vesicash\Services\Transactions;
 use Vesicash\Vesicash\Services\Upload;
 
 class VesicashServices {
-	protected $private_key;
-    protected $mode;
+	public $private_key;
+    public $mode;
 
-	public function __construct() {
-		// Vesicash v1
-	}
+    public function __construct($private_key, $mode = 'sandbox')
+    {
+        $this->private_key = $private_key;
+        $this->mode = $mode;
+    }
 
     /**
      * Set Private Key
@@ -57,31 +59,31 @@ class VesicashServices {
     public function service($service) {
 	    switch ($service) {
             case "auth":
-                return new Auth;
+                return new Auth($this->private_key, $this->mode);
                 break;
 
             case 'admin':
-                return new Admin;
+                return new Admin($this->private_key, $this->mode);
                 break;
 
             case 'transactions':
-                return new Transactions;
+                return new Transactions($this->private_key, $this->mode);
                 break;
 
             case 'payment':
-                return new Payment;
+                return new Payment($this->private_key, $this->mode);
                 break;
 
             case 'subscription':
-                return new Subscription;
+                return new Subscription($this->private_key, $this->mode);
                 break;
 
             case 'upload':
-                return new Upload;
+                return new Upload($this->private_key, $this->mode);
                 break;
 
             case 'notifications':
-                return new Notifications;
+                return new Notifications($this->private_key, $this->mode);
                 break;
         }
     }

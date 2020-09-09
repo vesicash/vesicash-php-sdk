@@ -11,7 +11,7 @@ class Auth extends Request {
      * @return mixed
      * @throws Exception
      */
-    public function loginViaUsername($data): array {
+    public function loginViaUsername(array $data) {
         try {
             return $this->request('auth/login', $data);
         } catch (\Exception $exception) {
@@ -25,7 +25,7 @@ class Auth extends Request {
      * @return mixed
      * @throws Exception
      */
-    public function loginViaPhoneNumber($data): array {
+    public function loginViaPhoneNumber(array $data) {
         try {
             return $this->request('auth/login', $data);
         } catch (\Exception $exception) {
@@ -39,7 +39,7 @@ class Auth extends Request {
      * @return array
      * @throws Exception
      */
-    public function signup($data): array {
+    public function signup(array $data) {
         try {
             return $this->request('auth/signup', $data);
         } catch (\Exception $exception) {
