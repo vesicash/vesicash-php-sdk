@@ -39,13 +39,9 @@ class Request extends VesicashServices {
      * @throws Exception
      */
     protected function required($checks, $data) {
-        if(is_array($checks)) {
-            if(count($checks) > 0) {
-                foreach($checks as $check) {
-                    if(!in_array($check, $data)) {
-                        throw new Exception("$check is required.");
-                    }
-                }
+        foreach($checks as $check) {
+            if(!in_array($check, $data)) {
+                throw new Exception("Missing parameter: $check is required.");
             }
         }
     }
