@@ -23,6 +23,7 @@ class Payment extends Request
 
     /**
      * Pay Headless (Pay without a transaction)
+     
      * @param $data
      * @return mixed
      * @throws Exception
@@ -43,7 +44,7 @@ class Payment extends Request
      * @return mixed
      * @throws Exception
      */
-    public function fundWallet(array $data) {
+    public function fundWallets(array $data) {
         try {
             // Make sure the required data is being passed.
             $this->required(['account_id', 'amount', 'currency'], $data);
