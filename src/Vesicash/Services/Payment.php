@@ -22,16 +22,16 @@ class Payment extends Request
     }
 
     /**
-     * Initial Manual Disbursement
-     * @param array $data
+     * Pay Headless (Pay without a transaction)
+     * @param $data
      * @return mixed
      * @throws Exception
      */
-    public function initManualDisbursement(array $data) {
+    public function payHeadless($data) {
+        $this->required(['account_id', 'currency', 'country', 'amount'], $data);
+
         try {
-            // Make sure the required data is being passed.
-            $this->required(['recipient_id', 'amount', 'currency', 'debit_currency'], $data);
-            return $this->request('/payment/disbursement/wallet/withdraw', []);
+            return $this->request('/payment/pay/headless', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -67,6 +67,43 @@ class Payment extends Request
             $this->required(['account_id', 'amount', 'currency'], $data);
 
             return $this->request('/payment/pay/fund/wallet/verify', ['reference' => $data['reference'], 'currency' => $data['currency'], 'amount' => $data['amount']]);
+
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    /**
+     * Wallet Disbursement
+     * @param array $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function walletWithdrawal(array $data) {
+        try {
+            // Make sure the required data is being passed.
+            $this->required(['account_id', 'amount', 'currency', 'debit_currency'], $data);
+
+            return $this->request('/payment/disbursement/wallet/withdraw', $data);
+
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    /**
+     * List Disbursement
+     * @param array $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function listDisbursements(array $data) {
+        try {
+
+            // Make sure the required data is being passed.
+            $this->required(['account_id'], $data);
+
+            return $this->request('/payment/disbursement/wallet/withdraw/'.$data['account_id'], $data);
 
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
