@@ -13,6 +13,7 @@ class Auth extends Request {
      */
     public function loginViaUsername(array $data) {
         try {
+            $this->required(['username', 'password'], $data);
             return $this->request('auth/login', $data);
         } catch (\Exception $exception) {
             throw new Exception($exception->getMessage());
@@ -27,6 +28,7 @@ class Auth extends Request {
      */
     public function loginViaPhoneNumber(array $data) {
         try {
+            $this->required(['username', 'phone_number'], $data);
             return $this->request('auth/login', $data);
         } catch (\Exception $exception) {
             throw new Exception($exception->getMessage());

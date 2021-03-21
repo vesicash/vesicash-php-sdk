@@ -39,6 +39,21 @@ class Request extends VesicashServices {
      * @throws Exception
      */
     protected function required($checks, $data) {
-        // TODO
+        foreach($checks as $item) {
+            if(!array_key_exists($item, $data)) {
+                throw new Exception("$item does not exist.");
+            }
+        }
+    }
+
+    /**
+     * dd (copied from laravel)
+     * @param $checks
+     * @param $data
+     * @throws Exception
+     */
+    protected function dd($data) {
+        var_dump($data);
+        die;
     }
 }
