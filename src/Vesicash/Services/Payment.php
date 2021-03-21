@@ -36,4 +36,40 @@ class Payment extends Request
             throw new Exception($e->getMessage());
         }
     }
+
+    /**
+     * Fund Wallet
+     * @param array $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function fundWallet(array $data) {
+        try {
+            // Make sure the required data is being passed.
+            $this->required(['account_id', 'amount', 'currency'], $data);
+
+            return $this->request('/payment/pay/fund/wallet', ['account_id' => $data['account_id'], 'currency' => $data['currency'], 'amount' => $data['amount']]);
+
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    /**
+     * Verify Wallet Funding
+     * @param array $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function verifyWalletFunding(array $data) {
+        try {
+            // Make sure the required data is being passed.
+            $this->required(['account_id', 'amount', 'currency'], $data);
+
+            return $this->request('/payment/pay/fund/wallet/verify', ['reference' => $data['reference'], 'currency' => $data['currency'], 'amount' => $data['amount']]);
+
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
 }
