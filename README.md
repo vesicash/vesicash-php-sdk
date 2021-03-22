@@ -8,7 +8,7 @@
 5. Bug Reporting
 
 ### 1.Installation
-`composer require vesicash/vesicash-php-sdk`
+`composer require vesicash/vesicash-php-sdk:dev-master`
 
 ### 2. Usage
 See <a href="examples">Examples</a>
