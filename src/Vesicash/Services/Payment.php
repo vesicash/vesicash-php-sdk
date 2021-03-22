@@ -15,7 +15,7 @@ class Payment extends Request
         $this->required(['transaction_id'], $data);
 
         try {
-            return $this->request('/payment/pay', $data);
+            return $this->request('payment/pay', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -32,7 +32,7 @@ class Payment extends Request
         $this->required(['account_id', 'currency', 'country', 'amount'], $data);
 
         try {
-            return $this->request('/payment/pay/headless', $data);
+            return $this->request('payment/pay/headless', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -49,7 +49,7 @@ class Payment extends Request
             // Make sure the required data is being passed.
             $this->required(['account_id', 'amount', 'currency'], $data);
 
-            return $this->request('/payment/pay/fund/wallet', ['account_id' => $data['account_id'], 'currency' => $data['currency'], 'amount' => $data['amount']]);
+            return $this->request('payment/pay/fund/wallet', ['account_id' => $data['account_id'], 'currency' => $data['currency'], 'amount' => $data['amount']]);
 
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
@@ -67,7 +67,7 @@ class Payment extends Request
             // Make sure the required data is being passed.
             $this->required(['account_id', 'amount', 'currency'], $data);
 
-            return $this->request('/payment/pay/fund/wallet/verify', ['reference' => $data['reference'], 'currency' => $data['currency'], 'amount' => $data['amount']]);
+            return $this->request('payment/pay/fund/wallet/verify', ['reference' => $data['reference'], 'currency' => $data['currency'], 'amount' => $data['amount']]);
 
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
@@ -85,7 +85,7 @@ class Payment extends Request
             // Make sure the required data is being passed.
             $this->required(['account_id', 'amount', 'currency', 'debit_currency'], $data);
 
-            return $this->request('/payment/disbursement/wallet/withdraw', $data);
+            return $this->request('payment/disbursement/wallet/withdraw', $data);
 
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
@@ -104,7 +104,7 @@ class Payment extends Request
             // Make sure the required data is being passed.
             $this->required(['account_id'], $data);
 
-            return $this->request('/payment/disbursement/wallet/withdraw/'.$data['account_id'], $data);
+            return $this->request('payment/disbursement/wallet/withdraw/'.$data['account_id'], $data);
 
         } catch (Exception $e) {
             throw new Exception($e->getMessage());

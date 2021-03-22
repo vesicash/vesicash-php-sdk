@@ -21,7 +21,7 @@ class Transactions extends Request
         }
 
         try {
-            return $this->request('/transactions/create', $data);
+            return $this->request('transactions/create', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -37,7 +37,7 @@ class Transactions extends Request
         $this->required(['transaction_id', 'parties'], $data);
 
         try {
-            return $this->request('/transactions/parties/update', $data);
+            return $this->request('transactions/parties/update', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -53,7 +53,7 @@ class Transactions extends Request
         $this->required(['transaction_id'], $data);
 
         try {
-            return $this->request('/transactions/send', $data);
+            return $this->request('transactions/send', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -69,7 +69,7 @@ class Transactions extends Request
         $this->required(['transaction_id'], $data);
 
         try {
-            return $this->request('/transactions/accept', $data);
+            return $this->request('transactions/accept', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -85,7 +85,7 @@ class Transactions extends Request
         $this->required(['transaction_id'], $data);
 
         try {
-            return $this->request('/transactions/reject', $data);
+            return $this->request('transactions/reject', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -102,7 +102,7 @@ class Transactions extends Request
 
         try {
             $transaction_id = $data['transaction_id'];
-            return $this->request('/transactions/listById/'.$transaction_id, []);
+            return $this->request('transactions/listById/'.$transaction_id, []);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -118,7 +118,7 @@ class Transactions extends Request
         $this->required(['transaction_id', 'note'], $data);
 
         try {
-            return $this->request('/transactions/request/due_date_extension', $data);
+            return $this->request('transactions/request/due_date_extension', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -134,7 +134,7 @@ class Transactions extends Request
         $this->required(['transaction_id', 'due_date'], $data);
 
         try {
-            return $this->request('/transactions/approve/due_date_extension', $data);
+            return $this->request('transactions/approve/due_date_extension', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -150,7 +150,7 @@ class Transactions extends Request
         $this->required(['transaction_id'], $data);
 
         try {
-            return $this->request('/transactions/delivered', $data);
+            return $this->request('transactions/delivered', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -166,7 +166,7 @@ class Transactions extends Request
         $this->required(['transaction_id'], $data);
 
         try {
-            return $this->request('/transactions/satisfied', $data);
+            return $this->request('transactions/satisfied', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -182,7 +182,7 @@ class Transactions extends Request
         $this->required(['transaction_id'], $data);
 
         try {
-            return $this->request('/transactions/reject_delivery', $data);
+            return $this->request('transactions/reject_delivery', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -198,7 +198,7 @@ class Transactions extends Request
         $this->required(['business_id'], $data);
 
         try {
-            return $this->request('/transactions/listByBusiness', $data);
+            return $this->request('transactions/listByBusiness', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -214,7 +214,7 @@ class Transactions extends Request
         $this->required(['account_id'], $data);
 
         try {
-            return $this->request('/transactions/listByUser', $data);
+            return $this->request('transactions/listByUser', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -230,7 +230,7 @@ class Transactions extends Request
         $this->required(['transaction_id', 'dispute_status', 'reason'], $data);
 
         try {
-            return $this->request('/transactions/dispute', $data);
+            return $this->request('transactions/dispute', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -246,7 +246,7 @@ class Transactions extends Request
         $this->required(['transaction_id', 'dispute_status', 'decision'], $data);
 
         try {
-            return $this->request('/transactions/dispute/update', $data);
+            return $this->request('transactions/dispute/update', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

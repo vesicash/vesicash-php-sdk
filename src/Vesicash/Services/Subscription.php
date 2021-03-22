@@ -15,7 +15,7 @@ class Subscription extends Request
         $this->required(['type', 'title', 'amount', 'business_id'], $data);
 
         try {
-            return $this->request('/subscription/plan/create', $data);
+            return $this->request('subscription/plan/create', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -31,7 +31,7 @@ class Subscription extends Request
         $this->required(['subscription_plan_id', 'account_id', 'trial_period'], $data);
 
         try {
-            return $this->request('/subscription/subscribe', $data);
+            return $this->request('subscription/subscribe', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

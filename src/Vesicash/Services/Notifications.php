@@ -15,7 +15,7 @@ class Notifications extends Request
         $this->required(['transaction_id', 'notification_type'], $data);
 
         try {
-            return $this->request('/notifications/email/send/custom', $data);
+            return $this->request('notifications/email/send/custom', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

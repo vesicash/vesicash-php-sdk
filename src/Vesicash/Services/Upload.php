@@ -15,7 +15,7 @@ class Upload extends Request
         $this->required(['files'], $data);
 
         try {
-            return $this->request('/upload/file', $data);
+            return $this->request('upload/file', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
