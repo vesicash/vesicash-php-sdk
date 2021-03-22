@@ -231,7 +231,7 @@ class Admin extends Request {
         try {
             // Make sure the required data is being passed.
             $this->required(['account_id'], $data);
-            return $this->request('admin/account/wallet', []);
+            return $this->request('admin/account/wallet', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
