@@ -93,6 +93,24 @@ class Payment extends Request
     }
 
     /**
+     * Funds Disbursement To Bank Account
+     * @param array $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function walletWithdrawalToBankAccount(array $data) {
+        try {
+            // Make sure the required data is being passed.
+            $this->required(['account_id', 'amount', 'currency', 'debit_currency', 'firstname', 'lastname', 'bank_account_number', 'bank_code'], $data);
+
+            return $this->request('payment/disbursement/wallet/withdraw', $data);
+
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    /**
      * List Disbursement
      * @param array $data
      * @return mixed
