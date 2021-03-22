@@ -44,7 +44,7 @@ class Payment extends Request
      * @return mixed
      * @throws Exception
      */
-    public function fundWallets(array $data) {
+    public function fundWallet(array $data) {
         try {
             // Make sure the required data is being passed.
             $this->required(['account_id', 'amount', 'currency'], $data);
@@ -65,7 +65,7 @@ class Payment extends Request
     public function verifyWalletFunding(array $data) {
         try {
             // Make sure the required data is being passed.
-            $this->required(['account_id', 'amount', 'currency'], $data);
+            $this->required(['reference', 'amount', 'currency'], $data);
 
             return $this->request('payment/pay/fund/wallet/verify', ['reference' => $data['reference'], 'currency' => $data['currency'], 'amount' => $data['amount']]);
 
