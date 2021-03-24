@@ -111,6 +111,20 @@ class Payment extends Request
     }
 
     /**
+     * Verify Disbursement Status
+     * @param array $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function verifyWalletWithdrawal(array $data) {
+        try {
+            //
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    /**
      * List Disbursement
      * @param array $data
      * @return mixed
