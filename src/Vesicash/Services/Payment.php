@@ -118,7 +118,8 @@ class Payment extends Request
      */
     public function verifyWalletWithdrawal(array $data) {
         try {
-            //
+            // TODO
+            return $this->request('payment/disbursement/verify', $data) ?? NULL;
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
