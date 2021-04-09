@@ -13,7 +13,7 @@ class Upload extends Request
      */
     public function upload($data) {
         $this->required(['files'], $data);
-
+        // Make sure the required data is being passed.
         try {
             return $this->request('upload/file', $data);
         } catch (Exception $e) {

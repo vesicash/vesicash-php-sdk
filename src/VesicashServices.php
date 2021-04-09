@@ -8,6 +8,7 @@ use Vesicash\Vesicash\Services\Payment;
 use Vesicash\Vesicash\Services\Subscription;
 use Vesicash\Vesicash\Services\Transactions;
 use Vesicash\Vesicash\Services\Upload;
+use Vesicash\Vesicash\Services\Verification;
 
 class VesicashServices {
 	public $private_key;
@@ -84,6 +85,10 @@ class VesicashServices {
 
             case 'notifications':
                 return new Notifications($this->private_key, $this->mode);
+                break;
+
+            case 'verification':
+                return new Verification($this->private_key, $this->mode);
                 break;
         }
     }

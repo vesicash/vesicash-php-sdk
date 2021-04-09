@@ -43,7 +43,36 @@ class Auth extends Request {
      */
     public function signup(array $data) {
         try {
+            $this->required(['account_type', 'business_type', 'email_address', 'country'], $data);
             return $this->request('auth/signup', $data);
+        } catch (\Exception $exception) {
+            throw new Exception($exception->getMessage());
+        }
+    }
+    /**
+     * Upgrade User Account
+     * @param $data
+     * @return array
+     * @throws Exception
+     */
+    public function upgradeAccount(array $data) {
+        try {
+            $this->required(['account_id', 'business_type', 'business_name'], $data);
+            return $this->request('auth/user/upgrade/account', $data);
+        } catch (\Exception $exception) {
+            throw new Exception($exception->getMessage());
+        }
+    }
+    /**
+     * Renew User
+     * @param $data
+     * @return array
+     * @throws Exception
+     */
+    public function renew(array $data) {
+        try {
+            $this->required(['account_id'], $data);
+            return $this->request('auth/renew', $data);
         } catch (\Exception $exception) {
             throw new Exception($exception->getMessage());
         }
