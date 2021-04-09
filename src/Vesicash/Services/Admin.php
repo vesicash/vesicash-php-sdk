@@ -253,12 +253,11 @@ class Admin extends Request {
         }
     }
     /**
-     * Update Crypto Wallet
+     * Update transaction status
      * @param array $data
      * @return mixed
      * @throws Exception
      */
-    // Update transaction status
     public function updateTransactionStatus(array $data) {
         try {
             // Make sure the required data is being passed.
@@ -269,12 +268,11 @@ class Admin extends Request {
         }
     }
     /**
-     * Update Crypto Wallet
+     * Set Default Payment Gateway
      * @param array $data
      * @return mixed
      * @throws Exception
      */
-    // Set Default Payment Gateway
     public function setDefaultPaymentGateway(array $data) {
         try {
             // Make sure the required data is being passed.
@@ -285,12 +283,11 @@ class Admin extends Request {
         }
     }
     /**
-     * Update Crypto Wallet
+     * Set Default Disbursement Gateway
      * @param array $data
      * @return mixed
      * @throws Exception
      */
-    // Set Default Disbursement Gateway
     public function setDisbursementPaymentGateway(array $data) {
         try {
             // Make sure the required data is being passed.
@@ -301,12 +298,11 @@ class Admin extends Request {
         }
     }
     /**
-     * Update Crypto Wallet
+     * Set Default Disbursement Type
      * @param array $data
      * @return mixed
      * @throws Exception
      */
-    // Set Default Disbursement Type
     public function setDisbursementPaymentType(array $data) {
         try {
             // Make sure the required data is being passed.
@@ -317,12 +313,12 @@ class Admin extends Request {
         }
     }
     /**
-     * Update Crypto Wallet
+     * Update Disbursement Status
      * @param array $data
      * @return mixed
      * @throws Exception
      */
-    // Update Disbursement Status
+    
     public function updateDisbursementStatus(array $data) {
         try {
             // Make sure the required data is being passed.
@@ -333,12 +329,12 @@ class Admin extends Request {
         }
     }
     /**
-     * Update Crypto Wallet
+     * Set Escrow Charge for Business
      * @param array $data
      * @return mixed
      * @throws Exception
      */
-    // Set Escrow Charge for Business
+    
     public function setBusinessEscrowCharge(array $data) {
         try {
             // Make sure the required data is being passed.
@@ -348,41 +344,15 @@ class Admin extends Request {
             throw new Exception($e->getMessage());
         }
     }
+    
+    
     /**
-     * Update Crypto Wallet
+     * Fetch Business Transactions Chart
      * @param array $data
      * @return mixed
      * @throws Exception
      */
-    // Fetch All Business Transactions Count
-    public function fetchBusinessTransactionsCount(array $data) {
-        try {
-            return $this->request('admin/business/transactions/statistics', $data);
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
-        }
-    }
-    /**
-     * Update Crypto Wallet
-     * @param array $data
-     * @return mixed
-     * @throws Exception
-     */
-    // Fetch All Active Business Transactions
-    public function fetchActiveBusinessTransactions(array $data) {
-        try {
-            return $this->request('admin/business/transactions/active/statistics', $data);
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
-        }
-    }
-    /**
-     * Update Crypto Wallet
-     * @param array $data
-     * @return mixed
-     * @throws Exception
-     */
-    // Fetch Business Transactions Chart
+    
     public function fetchtBusinessTransactionsChart(array $data) {
         try {
             // Make sure the required data is being passed.
@@ -393,12 +363,12 @@ class Admin extends Request {
         }
     }
     /**
-     * Update Crypto Wallet
+     * Fetch Business Transactions Earned Sum
      * @param array $data
      * @return mixed
      * @throws Exception
      */
-    // Fetch Business Transactions Earned Sum
+    
     public function fetchtBusinessTransactionsEarnedSum(array $data) {
         try {
             // Make sure the required data is being passed.
@@ -409,12 +379,12 @@ class Admin extends Request {
         }
     }
     /**
-     * Update Crypto Wallet
+     * Fetch Business Transactions Total Sales
      * @param array $data
      * @return mixed
      * @throws Exception
      */
-    // Fetch Business Transactions Total Sales
+    
     public function fetchtBusinessTransactionsTotalSales(array $data) {
         try {
             // Make sure the required data is being passed.
@@ -528,36 +498,7 @@ class Admin extends Request {
             throw new Exception($e->getMessage());
         }
     }
-    /**
-     * Get Admin Stats
-     * @param array $data
-     * @return mixed
-     * @throws Exception
-     */
     
-    public function adminStats(array $data) {
-        try {
-            // Make sure the required data is being passed.
-            $this->required(['start_date', 'end_date'], $data);
-            return $this->request('admin/users/statistics', $data);
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
-        }
-    }
-    /**
-     * Admin Stats Account
-     * @param array $data
-     * @return mixed
-     * @throws Exception
-     */
-    
-    public function adminStatsAccount(array $data) {
-        try {
-            return $this->request('admin/users/statistics/accumulated', $data);
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
-        }
-    }
     /**
      * Fetch All Transactions
      * @param array $data
@@ -602,70 +543,10 @@ class Admin extends Request {
             throw new Exception($e->getMessage());
         }
     }
-    /**
-     * Get Users Statistics
-     * @param array $data
-     * @return mixed
-     * @throws Exception
-     */
     
-    public function usersStatistics(array $data) {
-        try {
-            // Make sure the required data is being passed.
-            $this->required(['start_date', 'end_date'], $data);
-            return $this->request('admin/users/statistics', $data);
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
-        }
-    }
-    /**
-     * Get Users Statistics Accumulated
-     * @param array $data
-     * @return mixed
-     * @throws Exception
-     */
     
-    public function usersStatisticsAccumulated(array $data) {
-        try {
-            // Make sure the required data is being passed.
-            $this->required(['start_date', 'end_date'], $data);
-            return $this->request('admin/users/statistics/accumulated', $data);
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
-        }
-    }
-    /**
-     * Get Transactions Statistics
-     * @param array $data
-     * @return mixed
-     * @throws Exception
-     */
     
-    public function transactionsStatistics(array $data) {
-        try {
-            // Make sure the required data is being passed.
-            $this->required(['transaction_id'], $data);
-            return $this->request('admin/statistics/transactions', $data);
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
-        }
-    }
-    /**
-     * Delete User Record
-     * @param array $data
-     * @return mixed
-     * @throws Exception
-     */
     
-    public function deleteUser(array $data) {
-        try {
-            // Make sure the required data is being passed.
-            $this->required(['account_id'], $data);
-            return $this->request('admin/user/delete', $data);
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
-        }
-    }
     /**
      * Fecth User By Username
      * @param array $data
