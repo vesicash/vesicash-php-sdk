@@ -21,6 +21,7 @@ See <a href="examples">Examples</a>
 5. Notifications
 6. Upload
 7. Subscription
+8. Verification
 
 ### 4. Contribution
 Make a pull request with detailed explanation of what got changed/improved/suggested.
