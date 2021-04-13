@@ -12,7 +12,7 @@ class Transactions extends Request
      * @throws Exception
      */
     public function create($data) {
-        $this->required(['title', 'type', 'parties', 'currency'], $data);
+        $this->required(['title', 'type', 'parties', 'currency', 'description', 'amount', 'inspection_period', 'due_date', 'broker_charge', 'broker_charge_type', 'grace_period', 'source'], $data);
 
         if ($data['type'] == 'product') {
             $this->required(['products'], $data);
@@ -247,6 +247,51 @@ class Transactions extends Request
 
         try {
             return $this->request('transactions/dispute/update', $data);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+    /**
+     * Update Broker Info
+     * @param $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function updateBrokerInfo($data) {
+        $this->required(['transaction_id', 'broker_charge'], $data);
+
+        try {
+            return $this->request('transactions/broker/update', $data);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+    /**
+     * Update Transaction Status
+     * @param $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function updateTransactionStatus($data) {
+        $this->required(['transaction_id', 'status'], $data);
+
+        try {
+            return $this->request('transactions/updateStatus', $data);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+    /**
+     * Get Escrow Charge
+     * @param $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function getEscrowCharge($data) {
+        $this->required(['business_id', 'amount'], $data);
+
+        try {
+            return $this->request('transactions/escrowcharge', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

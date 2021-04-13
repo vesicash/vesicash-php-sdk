@@ -12,10 +12,25 @@ class Payment extends Request
      * @throws Exception
      */
     public function pay($data) {
-        $this->required(['transaction_id'], $data);
+        $this->required(['transaction_id', 'payment_gateway', 'success_page'], $data);
 
         try {
             return $this->request('payment/pay', $data);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+    /**
+     * Pay For Transaction Pool
+     * @param $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function payPool($data) {
+        $this->required(['transaction_id', 'account_id', 'success_page'], $data);
+
+        try {
+            return $this->request('payment/pay/pool', $data);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -29,7 +44,7 @@ class Payment extends Request
      * @throws Exception
      */
     public function payHeadless($data) {
-        $this->required(['account_id', 'currency', 'country', 'amount'], $data);
+        $this->required(['account_id', 'currency', 'country', 'amount', 'fund_wallet'], $data);
 
         try {
             return $this->request('payment/pay/headless', $data);
@@ -118,7 +133,9 @@ class Payment extends Request
      */
     public function verifyWalletWithdrawal(array $data) {
         try {
-            // TODO
+            // Make sure the required data is being passed.
+            $this->required(['disbursement_id'], $data);
+
             return $this->request('payment/disbursement/verify', $data) ?? NULL;
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
@@ -143,4 +160,181 @@ class Payment extends Request
             throw new Exception($e->getMessage());
         }
     }
+    /**
+     * Manual Disbursement
+     * @param array $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function manualDisbursements(array $data) {
+        try {
+
+            // Make sure the required data is being passed.
+            $this->required(['transaction_id'], $data);
+
+            return $this->request('payment/disbursement/process/manual', $data);
+
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+    /**
+     * Reinitialize Disbursement
+     * @param array $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function reinitializeDisbursements(array $data) {
+        try {
+
+            // Make sure the required data is being passed.
+            $this->required(['transaction_id', 'disbursement_id'], $data);
+
+            return $this->request('payment/disbursement/reinitialize', $data);
+
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+    /**
+     * Refund Disbursement
+     * @param array $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function refundDisbursements(array $data) {
+        try {
+
+            // Make sure the required data is being passed.
+            $this->required(['transaction_id'], $data);
+
+            return $this->request('payment/disbursement/process/refund', $data);
+
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+    /**
+     * Deposits Funds
+     * @param array $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function depositFunds(array $data) {
+        try {
+            return $this->request('payment/disbursement/wallet/deposit', $data);
+
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+    /**
+     * Headless Disbursement
+     * @param array $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function headlessDisbursements(array $data) {
+        try {
+
+            // Make sure the required data is being passed.
+            $this->required(['recipient_id', 'payment_id', 'amount', 'currency', 'type'], $data);
+
+            return $this->request('payment/disbursement/process/headless', $data);
+
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+    /**
+     * Create Payment
+     * @param array $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function createPayment(array $data) {
+        try {
+
+            // Make sure the required data is being passed.
+            $this->required(['transaction_id', 'total_amount', 'currency'], $data);
+
+            return $this->request('payment/create', $data);
+
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+    /**
+     * Create Payment Headless
+     * @param array $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function createPaymentHeadless(array $data) {
+        try {
+
+            // Make sure the required data is being passed.
+            $this->required(['account_id', 'total_amount'], $data);
+
+            return $this->request('payment/create/headless', $data);
+
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+    /**
+     * Create Payment Account
+     * @param array $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function createPaymentAccount(array $data) {
+        try {
+
+            // Make sure the required data is being passed.
+            $this->required(['transaction_id'], $data);
+
+            return $this->request('payment/payment_account/generate', $data);
+
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+    /**
+     * Verify Payment Account
+     * @param array $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function verifyPaymentAccount(array $data) {
+        try {
+
+            // Make sure the required data is being passed.
+            $this->required(['reference'], $data);
+
+            return $this->request('payment/payment_account/verify', $data);
+
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+    /**
+     * Verify Payment Account
+     * @param array $data
+     * @return mixed
+     * @throws Exception
+     */
+    public function redeemFeeCoupon(array $data) {
+        try {
+
+            // Make sure the required data is being passed.
+            $this->required(['transaction_id', 'code'], $data);
+
+            return $this->request('payment/feecoupon/redeem', $data);
+
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+    
 }
